@@ -1,0 +1,32 @@
+node
+{
+    stage "1.update the machine"
+    sh "yum update -y"
+    
+    stage "2. install some required packages"
+    sh "yum install -y git"
+    sh "yum install -y docker"
+    sh "yum install -y httpd"
+    sh "yum install -y python3"
+    sh "yum install -y java"
+    
+    stage "3. restart and enable the apache services"
+    sh "systemctl restart httpd"
+    sh "systemctl enable httpd"
+    
+    stage "4. restart and enable the docker services"
+    sh "systemctl restart docker"
+    sh "systemctl enable docker"
+    
+    stage "5. view data and time and calender and uptime"
+    sh "date"
+    sh "cal"
+    sh "uptime"
+    
+    stage "6. create file in the folder"
+    writeFile(file: "index.html", text: "Hello Jenkins!")
+// writeFile(file: "sample", text: "base64 encoded binary data", encoding: "Base64")
+
+    stage "7. create a folder"
+    sh "mkdir -p incoming-website"
+}
