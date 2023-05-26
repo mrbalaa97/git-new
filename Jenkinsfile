@@ -11,7 +11,7 @@ pipeline {
          stage ("2. service install") {
             steps {
                 sh "sudo yum update -y"
-                sh "sudo yum install -y docker"
+                sh "sudo yum install -y httpd"
             }
         }
         stage ("3. service start") {
